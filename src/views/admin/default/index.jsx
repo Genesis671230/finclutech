@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { getApi } from "services/api"; // Ensure this is imported
-import KPICard from "./components/KPICard"; // Import KPICard
-import SalesPipeline from "./components/SalesPipeline"; // Import SalesPipeline
-import FinancialOverview from "./components/FinancialOverview"; // Import FinancialOverview
+import { getApi } from "services/api"; 
+import KPICard from "./components/KPICard"; 
 import ABCBankLogo from '../../../assets/img/BankABCLogo.jpg';
 import XYZBankLogo from '../../../assets/img/XYZBANK.webp';
 import GlobalBlankLogo from '../../../assets/img/globalBank.jpg';
@@ -49,13 +47,13 @@ const Dashboard = () => {
       const monthlyResponse = await getApi('api/services/analytics/monthly');
       const weeklyResponse = await getApi('api/services/analytics/weekly');
       const mostUsedResponse = await getApi('api/services/analytics/most-used');
-      const entryStatsResponse = await getApi('api/services/stats'); // Assuming this endpoint returns the highest entry person
+      const entryStatsResponse = await getApi('api/services/stats'); 
 
       setMonthlyReport(monthlyResponse.data);
       setWeeklyReport(weeklyResponse.data);
     
-      setMostUsedService(mostUsedResponse.data); // Access the first item since it's an array
-      setHighestEntryPerson(entryStatsResponse.data); // Assuming this returns the person with the highest entries
+      setMostUsedService(mostUsedResponse.data); 
+      setHighestEntryPerson(entryStatsResponse.data); 
     } catch (err) {
       setError('Failed to fetch analytics');
       console.error(err);
@@ -66,7 +64,6 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="flex  gap-4">
 
-      {/* Most Used Service */}
       {mostUsedService && (
         <KPICard
           title="Most Used Service"
@@ -92,13 +89,12 @@ const Dashboard = () => {
           metric={`Entries: ${weeklyReport.length}`}
           isPositive={weeklyReport.length > 0}
           additionalDetails={weeklyReport.map(data => ({
-            icon: null, // Add appropriate icons if needed
+            icon: null, 
             text: `Week ${data._id}: ${data.count} entries`
           }))}
         />
       )}
 
-      {/* Monthly Report Insights */}
       {monthlyReport.length > 0 && (
         <KPICard
           title="Monthly Report"
@@ -108,14 +104,13 @@ const Dashboard = () => {
           metric={`Entries: ${monthlyReport.length}`}
           isPositive={monthlyReport.length > 0}
           additionalDetails={monthlyReport.map(data => ({
-            icon: null, // Add appropriate icons if needed
+            icon: null, 
             text: `Month ${data._id}: ${data.count} entries`
           }))}
         />
       )}
       </div>
 
-      {/* Highest Entry Person */}
       {highestEntryPerson && (
         <KPICard
           title="Person with Highest Entries"
@@ -133,7 +128,6 @@ const Dashboard = () => {
 
       <div>
       <div className=" gap-12">
-            {/* Service Selection */}
             <div className="space-y-6">
               <h2 className="text-2xl font-bold text-white mb-8">Select Your Service</h2>
               <div className="grid grid-cols-1 md:grid-cols-6 gap-6 w-full">
@@ -161,9 +155,7 @@ const Dashboard = () => {
           </div>
       </div>
 
-      {/* Sales Pipeline and Financial Overview */}
-      {/* <SalesPipeline />
-      <FinancialOverview /> */}
+    
     </div>
   );
 };

@@ -102,7 +102,6 @@ const EntryDetailsModal = ({ entry, customer, isOpen, onClose }) => {
       >
         <ModalBody p={0}>
           <HStack align="stretch" spacing={0} h="600px">
-            {/* Sidebar */}
             <VStack 
               w="240px" 
               bg="white" 
@@ -151,7 +150,6 @@ const EntryDetailsModal = ({ entry, customer, isOpen, onClose }) => {
               </VStack>
             </VStack>
 
-            {/* Content */}
             <Box flex={1} p={6} overflowY="auto">
                 <Tabs index={activeTab} onChange={handleTabChange}>    
                     <TabList>
@@ -160,7 +158,6 @@ const EntryDetailsModal = ({ entry, customer, isOpen, onClose }) => {
                         <Tab>Activity</Tab>
                     </TabList>
               <TabPanels>
-                {/* Entry Details Panel */}
                 <TabPanel>
                   <VStack spacing={6} align="stretch">
                     <HStack spacing={6}>
@@ -211,7 +208,6 @@ const EntryDetailsModal = ({ entry, customer, isOpen, onClose }) => {
                   </VStack>
                 </TabPanel>
 
-                {/* Customer Info Panel */}
                 <TabPanel>
                   <VStack spacing={6} align="stretch">
                     <DetailCard title="Contact Information">
@@ -249,7 +245,6 @@ const EntryDetailsModal = ({ entry, customer, isOpen, onClose }) => {
                   </VStack>
                 </TabPanel>
 
-                {/* Activity Panel */}
                 <TabPanel>
                   <DetailCard title="Recent Activity">
                     <VStack spacing={4} align="stretch">

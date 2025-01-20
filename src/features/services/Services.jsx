@@ -51,9 +51,7 @@ const Services = () => {
   const [stats, setStats] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [monthlyReport, setMonthlyReport] = useState([]);
-  const [weeklyReport, setWeeklyReport] = useState([]);
-  const [mostUsedService, setMostUsedService] = useState(null);
+
 
   useEffect(() => {
     fetchServices();
@@ -114,7 +112,6 @@ const Services = () => {
     event.preventDefault();
     if (!selectedService) return;
 
-    // Validate form data against selected service's required fields
     const isValid = selectedService.required_fields.every(field => {
       // if (field.required) {
         return formData[field.name] && new RegExp(field.validation).test(formData[field.name]);
@@ -140,7 +137,6 @@ const Services = () => {
       const latestEntries = entries?.length > 0 ? [response.data, ...entries] : [response.data];
       setEntries(latestEntries);
 
-      // Refresh entries after submission
       fetchServiceEntries();
       setFormData({});
       
@@ -232,7 +228,6 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -248,10 +243,8 @@ const Services = () => {
           </p>
         </motion.div>
 
-        {/* Service Selection Card */}
         <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8 mb-12 border border-white/20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Service Selection */}
             <div className="space-y-6">
               <h2 className="text-2xl font-bold text-white mb-8">Select Your Service</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -276,7 +269,6 @@ const Services = () => {
               </div>
             </div>
 
-            {/* Bank Logo Display */}
             {selectedService && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}

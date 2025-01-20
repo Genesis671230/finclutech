@@ -76,7 +76,6 @@ import {
   
     return (
       <Stack spacing={6}>
-        {/* Customer Information */}
         <Box p={4} bg="gray.50" rounded="md">
           <Text fontWeight="bold" mb={2}>
             Customer Information
@@ -88,7 +87,6 @@ import {
           </VStack>
         </Box>
   
-        {/* Entry Data */}
         <Box p={4} bg="gray.50" rounded="md">
           <Text fontWeight="bold" mb={2}>
             Entry Details
@@ -103,7 +101,6 @@ import {
           </VStack>
         </Box>
   
-        {/* Metadata */}
         <Box p={4} bg="gray.50" rounded="md">
           <Text fontWeight="bold" mb={2}>
             Metadata
@@ -325,7 +322,6 @@ import {
       }
     };
   
-    // Fetch entries when service selected or pagination/sorting changes
     useEffect(() => {
       if (!selectedService) return;
   
@@ -354,13 +350,11 @@ import {
       fetchEntries();
     }, [selectedService, currentPage, sortField, sortOrder, searchTerm]);
   
-    // Debounced search handler
     const handleSearch = debounce((value) => {
       setSearchTerm(value);
       setCurrentPage(1);
     }, 500);
   
-    // Dynamic columns based on selected service
     const columns = useMemo(() => {
       if (!selectedService) return [];
   
@@ -396,15 +390,12 @@ import {
     };
   
     const handleCloseModal = () => {
-      // First reset local states
       setSearchTerm("");
       setCurrentPage(1);
   
-      // Then dispatch modal close action
       dispatch(closeEntryDetailsModal());
     };
   
-    // Add cleanup effect
     useEffect(() => {
       return () => {
         // Cleanup when component unmounts
@@ -415,7 +406,6 @@ import {
     return (
       <Container maxW="7xl" py={8}>
         <VStack spacing={8} align="stretch">
-          {/* Header Section */}
           <HStack justify="space-between">
             <VStack align="start" spacing={1}>
               <Text fontSize="2xl" fontWeight="bold">
@@ -427,20 +417,17 @@ import {
               <IconButton
                 icon={<FiRefreshCw />}
                 onClick={() => {
-                  /* Fetch service entries */
                 }}
                 isLoading={isLoading}
               />
               <IconButton
                 icon={<FiDownload />}
                 onClick={() => {
-                  /* Export functionality */
                 }}
               />
             </HStack>
           </HStack>
   
-          {/* Stats Section */}
           <Grid templateColumns="repeat(4, 1fr)" gap={6}>
             <StatsCard
               label="Total Entries"
@@ -454,10 +441,8 @@ import {
               icon={FiClock}
               change={-2}
             />
-            {/* Add more stats cards */}
           </Grid>
   
-          {/* Service Selection */}
           <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={6}>
             {services.map((service) => (
               <ServiceCard
@@ -476,7 +461,6 @@ import {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
               >
-                {/* Filters Section */}
                 <HStack mb={6} spacing={4}>
                   <Input
                     placeholder="Search entries..."
@@ -489,11 +473,10 @@ import {
                       icon={<FiFilter />}
                       variant="outline"
                     />
-                    <MenuList>{/* Add filter options */}</MenuList>
+                    <MenuList></MenuList>
                   </Menu>
                 </HStack>
   
-                {/* Entries Table */}
                 <EntriesTable
                   entries={entries}
                   columns={columns}
@@ -501,14 +484,12 @@ import {
                   isLoading={isLoading}
                 />
   
-                {/* Pagination */}
-                {/* Add pagination component */}
+              
               </MotionBox>
             </AnimatePresence>
           )}
         </VStack>
   
-        {/* Entry Details Modal */}
         {isEntryDetailsModalOpen && (
           <EntryDetailsModal
             entry={selectedEntry}

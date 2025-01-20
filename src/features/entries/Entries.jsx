@@ -78,7 +78,6 @@ const EntriesList = ({ entry, onClose }) => {
 
   return (
     <Stack spacing={6}>
-      {/* Customer Information */}
       <Box p={4} bg="gray.50" rounded="md">
         <Text fontWeight="bold" mb={2}>
           Customer Information
@@ -90,7 +89,6 @@ const EntriesList = ({ entry, onClose }) => {
         </VStack>
       </Box>
 
-      {/* Entry Data */}
       <Box p={4} bg="gray.50" rounded="md">
         <Text fontWeight="bold" mb={2}>
           Entry Details
@@ -105,7 +103,6 @@ const EntriesList = ({ entry, onClose }) => {
         </VStack>
       </Box>
 
-      {/* Metadata */}
       <Box p={4} bg="gray.50" rounded="md">
         <Text fontWeight="bold" mb={2}>
           Metadata
@@ -302,7 +299,8 @@ const Entries = () => {
   const [sortOrder, setSortOrder] = useState("desc");
   const [searchTerm, setSearchTerm] = useState("");
   const [stats, setStats] = useState(null);
-  // Fetch services on mount
+
+
   useEffect(() => {
     const fetchServices = async () => {
       try {
@@ -327,7 +325,6 @@ const Entries = () => {
     }
   };
 
-  // Fetch entries when service selected or pagination/sorting changes
   useEffect(() => {
     if (!selectedService) return;
 
@@ -355,13 +352,11 @@ const Entries = () => {
     fetchEntries();
   }, [selectedService, currentPage, sortField, sortOrder, searchTerm]);
 
-  // Debounced search handler
   const handleSearch = debounce((value) => {
     setSearchTerm(value);
     setCurrentPage(1);
   }, 500);
 
-  // Dynamic columns based on selected service
   const columns = useMemo(() => {
     if (!selectedService) return [];
 
@@ -396,18 +391,14 @@ const Entries = () => {
   };
 
   const handleCloseModal = () => {
-    // First reset local states
     setSearchTerm("");
     setCurrentPage(1);
 
-    // Then dispatch modal close action
     dispatch(closeEntryDetailsModal());
   };
 
-  // Add cleanup effect
   useEffect(() => {
     return () => {
-      // Cleanup when component unmounts
       dispatch(closeEntryDetailsModal());
     };
   }, [dispatch]);
@@ -427,20 +418,17 @@ const Entries = () => {
             <IconButton
               icon={<FiRefreshCw />}
               onClick={() => {
-                /* Fetch service entries */
               }}
               isLoading={isLoading}
             />
             <IconButton
               icon={<FiDownload />}
               onClick={() => {
-                /* Export functionality */
               }}
             />
           </HStack>
         </HStack>
 
-        {/* Stats Section */}
         <Grid templateColumns="repeat(4, 1fr)" gap={6}>
           <StatsCard
             label="Total Entries"
@@ -454,10 +442,8 @@ const Entries = () => {
             icon={FiClock}
             change={-2}
           />
-          {/* Add more stats cards */}
         </Grid>
 
-        {/* Service Selection */}
         <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={6}>
           {services.map((service) => (
             <ServiceCard
@@ -476,7 +462,6 @@ const Entries = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
             >
-              {/* Filters Section */}
               <HStack mb={6} spacing={4}>
                 <Input
                   placeholder="Search entries..."
@@ -489,11 +474,10 @@ const Entries = () => {
                     icon={<FiFilter />}
                     variant="outline"
                   />
-                  <MenuList>{/* Add filter options */}</MenuList>
+                  <MenuList></MenuList>
                 </Menu>
               </HStack>
 
-              {/* Entries Table */}
               <EntriesTable
                 entries={entries}
                 columns={columns}
@@ -501,14 +485,12 @@ const Entries = () => {
                 isLoading={isLoading}
               />
 
-              {/* Pagination */}
-              {/* Add pagination component */}
+             
             </MotionBox>
           </AnimatePresence>
         )}
       </VStack>
 
-      {/* Entry Details Modal */}
       {isEntryDetailsModalOpen && (
         <EntryDetailsModal
           entry={selectedEntry}

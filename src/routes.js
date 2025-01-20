@@ -1,32 +1,23 @@
 import { Icon } from "@chakra-ui/react";
-import { HiOutlineDocumentReport, HiUsers } from "react-icons/hi";
+import { HiUsers } from "react-icons/hi";
 import {
-  MdContacts,
   MdHome,
   MdLock
 } from "react-icons/md";
 // icon
 import React from "react";
-import { GrMapLocation, GrProjects } from "react-icons/gr";
 import { LiaFileInvoiceSolid } from "react-icons/lia";
-import { LuBuilding2 } from "react-icons/lu";
 const Services = React.lazy(() => import("features/services/Services.jsx"));
 const Entries = React.lazy(() => import("features/entries/Entries"));
 const UserEntries = React.lazy(() => import("features/entries/UserEntries"));
+
 // Admin Imports
 const MainDashboard = React.lazy(() => import("views/admin/default"));
 const UserDashboard = React.lazy(() => import("views/user/default"));
 
 // My component
-
-
-
-
 const User = React.lazy(() => import("features/users/Users"));
 const UserView = React.lazy(() => import("views/admin/users/View"));
-
-
-
 
 // Auth Imports
 const SignInCentered = React.lazy(() => import("views/auth/signIn"));
